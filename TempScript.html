@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        <style media="screen">
+          fieldset{
+            border:1px solid #999;
+            border-radius:8px;
+            box-shadow:0 0 10px #999;
+            background-color: #ABEBC6;
+          }
+          input:hover{
+            border-color: #85C1E9;
+            border-radius: 5px;
+            border-radius:3px;
+          }
+          input{
+            border-radius: 5px;
+          }
+          select:hover{
+            border-color: #85C1E9;
+            border-radius: 5px;
+          }
+          p.head{
+            font-family: "Marlett";
+            font-size: 50px;
+            color: #7A8285;
+            font-weight: lighter;
+            text-align: center;
+          }
+          #id6{
+            color: red;
+          }
+          #id3{
+            color: red;
+          }
+          form{ }
+        </style>
+
+        <script>
+
+            function validate() {
+                var text1,count=0,num,text2;
+
+                var x = document.getElementById("Email").value;
+                var atpos = x.indexOf("@");
+                var dotpos = x.lastIndexOf(".");
+                if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                    text1="Not a valid e-mail address";
+                    document.getElementById("id3").innerHTML = text1;
+                    count++;
+                }
+
+                num = document.getElementById("phno").value;
+                if (num == null || isNaN(num) || num > 10000000000 || num < 7000000000) {
+                    text2 = "Enter valid phone number";
+                    document.getElementById("id6").innerHTML = text2;
+                    count++;    
+                }
+
+
+
+                if (count == 0){
+                    alert("Congratulations!!! Your account has been created successfully");
+                    return true;
+
+                }
+                else{
+                    count = 0;
+                    return false;
+                    document.getElementById("id3").innerHTML = null;
+                    document.getElementById("id6").innerHTML = null;
+                }
+            }
+        </script>
+        <p class="head">Create your Account</p>
+        <form name="signup" action="#" method="post" text-align="center">
+        <center>
+            <br>
+            <fieldset style="width: 270px;">
+            <center>
+                <table>
+                    <tr>
+                        <td>First Name<br><input id="Fname" type="text" name="Fname" placeholder="Enter your first name" required><p id="id1"></p></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name<br><input id="Lname" type="text" name="Lname" placeholder="Enter your last name" required><p id="id2"></p></td>
+                    </tr>
+                    <tr>
+                        <td>Email ID<br><input id="Email" type="text" name="Email" placeholder="Enter your Email ID"><p id="id3"></p></td>
+                    </tr>
+                    <tr>
+                        <td>College Name<br><input id="InstName" type="text" name="InstName" placeholder="Enter college name"><p id="id4"></p></td>
+                    </tr>
+                    <tr>
+                        <td>Gender<br>
+                            <select name="Gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select><p id="id5"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Contact No<br>
+                        <input id="phno" name="Phno" placeholder="Enter your Phone No."><p id="id6"></p></td>
+                    </tr>
+                    <tr>
+                        <td>User Name<br>
+                        <input id="Uname" type="text" name="Uname" placeholder="Choose your User name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Password<br>
+                        <input id="Password" type="password" name="Password" placeholder="Enter the password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm Password<br>
+                        <input id="Cpassword" type="password" name="Cpassword" placeholder="Confirm the password" required></td>
+                    </tr>    
+                </table><br>
+
+                <input type="submit" value="Submit" onclick="return validate()">
+                <input type="reset" value="Reset">
+            </center>
+            </fieldset>
+        </center>
+        </form>
+    </body>
+</html>

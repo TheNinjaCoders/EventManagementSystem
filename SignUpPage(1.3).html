@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign up</title>
+	<style type="text/css">
+		div.heading{
+			font-size: 20px;
+			text-align: center;
+			color: #708090;
+		}
+		fieldset{
+			width: 200px;
+			background-color: #F8F8FF;
+		}
+		table.Name{
+			border-spacing: 3px;
+			padding-top: 3px;
+		}
+		table{
+			padding-bottom: 10px;		
+		}
+		th{
+			float: left;
+		}
+		#id6{
+			color: red;
+		}
+		/*
+		input[type="text"]:-moz-placeholder {
+    		text-align: right;
+		}
+		input[type="text"]:-ms-input-placeholder {
+		    text-align: right;
+		}
+		input[type="text"]::-webkit-input-placeholder {
+		    text-align: right;
+		}*/
+	</style>
+	<script type="text/javascript">
+		function validate() {
+			var check1 = /^[0-9a-zA-Z]+$/;
+			var check2 = /^[a-zA-Z]+$/;
+			var p1;
+			/*var fname = document.forms["signup"]["Fname"].value;
+			var lname = document.forms["signup"]["Lname"].value;
+			if(fname.value.match(check2) && fname.value.match(check2))
+				return true;
+
+			else{
+				alert("Please enter valid details");
+				return false;
+			}
+			*/
+			var email = document.signup.Email.value;
+			alert(email);
+			atpos  = email.indexOf("@");
+         	dotpos = email.lastIndexOf(".");
+         	if (atpos < 1 || ( dotpos - atpos < 2 ) && email.value == null){
+	            document.getElementById("id6").innerHTML = "Enter valid email address"; 
+	            document.signup.Email.focus() ;
+	            return false;
+	         }
+	         return true;
+			}
+	</script>
+</head>
+<body>
+	<div class = "heading"><h1>Create your account</h1></div>
+	<div class = "form">
+		<center>
+		<fieldset>
+			<form action = "#" method = "post" name="signup">
+				<table class="Name">
+					<th>Name</th>
+					<tr>
+						<td><input type="text" name="Fname" placeholder="First" size="14"></td>
+						<td><input type="text" name="Lname" placeholder="Last" size="14"></td>
+					</tr>
+				</table>
+
+				<table>
+					<th>Create your username</th>
+					<tr><td><input type="text" name="Uname" size="33" placeholder="example : john123"></td></tr>
+				</table>
+				<table>
+					<th>Choose your password</th>
+					<tr><td><input type="password" name="Pword" size="33"></td></tr>
+				</table>
+				<table>
+					<th>Confirm your password</th>
+					<tr><td><input type="password" name="CPword" size="33"></td></tr>
+				</table>
+				<table>
+					<th>Phone Number</th>
+					<tr><td><input type="tel" name="CPword" size="33" maxlength="10" placeholder="example : 9765124532"></td></tr>
+				</table>
+				<table>
+					<th>Email address</th>
+					<tr><td><input type="text" name="Email" size="33" placeholder="example : someone@example.com"></td></tr>
+					<th><p id="id6"></p></th>
+				</table>
+				
+				<table>
+					<th>Institution Name</th>
+					<tr><td><input type="text" name="InsName" size="33" placeholder="example : K J Somaiya Institute of Engineering and IT"></td></tr>
+				</table>
+				<table>
+				<tr><td><input type="submit" value="Submit" onclick="return validate()"></td></tr>
+				</table>
+			</form>
+		</fieldset>
+		</center>
+	</div>
+</body>
+</html>

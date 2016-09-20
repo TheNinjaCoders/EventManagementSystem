@@ -22,46 +22,152 @@
 		th{
 			float: left;
 		}
-		#id6{
+		#id1, #id2, #id3, #id4, #id5, #id6, #id7, #id8{
 			color: red;
+			float: left;
+			text-indent: 5px;
 		}
-		/*
-		input[type="text"]:-moz-placeholder {
-    		text-align: right;
-		}
-		input[type="text"]:-ms-input-placeholder {
-		    text-align: right;
-		}
-		input[type="text"]::-webkit-input-placeholder {
-		    text-align: right;
-		}*/
 	</style>
 	<script type="text/javascript">
 		function validate() {
-			var check1 = /^[0-9a-zA-Z]+$/;
-			var check2 = /^[a-zA-Z]+$/;
-			var p1;
-			/*var fname = document.forms["signup"]["Fname"].value;
-			var lname = document.forms["signup"]["Lname"].value;
-			if(fname.value.match(check2) && fname.value.match(check2))
-				return true;
+			var fname  = document.signup.Fname;
+			var lname  = document.signup.Lname;
+			var user   = document.signup.Uname;
+			var pword  = document.signup.Pword;
+			var cpword = document.signup.CPword;
+			var phno   = document.signup.Phone;
+			var email  = document.signup.Email;
+			var ins    = document.signup.InsName;
+
+			var count = 0, c = 0;
+			var text1, text2, text3, text4, text5, text6, text7;
+
+			var regex1 = /^[a-zA-Z ]{2,30}$/;
+			var regex2 = /^[A-Za-z0-9_]{3,20}$/;
+			var regex3 = /^[A-Za-z0-9_]{3,20}$/;
+			var regex4 = /^[A-Za-z0-9!@#$%^&*()_]{2,20}$/;
+			var regex5 = /^\d{10}$/;
+			var regex6 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var regex7 = /^[a-zA-Z ]{5,100}$/;
+
+			if(regex1.test(fname.value) == true || regex1.test(lname.value) == true && fname.value != null && lname.value != null){
+				if(regex1.test(fname.value) == false){
+					count ++;
+				}
+				if(regex1.test(lname.value) == false){
+					count += 2;
+				}
+				if(count == 1){
+					text1 = "Enter a valid first name";
+					document.getElementById("1").focus();
+					document.getElementById("id1").innerHTML = text1;
+					c++;		
+				}
+				else if(count == 2){
+					text1 = "Enter a valid last name";
+					document.getElementById("2").focus();
+					document.getElementById("id1").innerHTML = text1;				
+					c++;
+				}
+				if(count == 0){
+					text1 = null;
+					document.getElementById("id1").innerHTML = text1;
+				}
+			}
+			else{
+				text1 = "Enter a valid name";
+				document.getElementById("id1").innerHTML = text1;	
+				c++;
+			}
+
+			count = 0;
+			if(regex2.test(user.value) == false || user.value == null){
+				text2 = "Enter a valid username";
+				document.getElementById("2").focus();
+				document.getElementById("id2").innerHTML = text2;
+				count++;
+				c++;
+			}
+			if(count == 0){
+				text2 = null;
+				document.getElementById("id2").innerHTML = text2;
+			}
+
+			count = 0;
+			if(regex4.test(pword.value) == false){
+				text3 = "Enter a valid password";
+				document.getElementById("4").focus();
+				document.getElementById("id3").innerHTML = text3;
+				c++;
+				count++;
+			}
+			if(count == 0){
+				text3 = null;
+				document.getElementById("id3").innerHTML = text3;
+			}
+
+			count = 0;
+			if(cpword.value != pword.value && cpword.value != null){
+				text4 = "Password dosen't match";
+				document.getElementById("5").focus();
+				document.getElementById("id4").innerHTML = text4;
+				c++;
+				count++;
+			}
+			if(count == 0){
+				text4 = null;
+				document.getElementById("id4").innerHTML = text4;
+			}
+
+			count = 0;
+			if(phno.value >= 7000000000 && phno.value <= 9999999999 && phno.value != null){}
 
 			else{
-				alert("Please enter valid details");
+				text5 = "Enter a valid phone number";
+				document.getElementById("6").focus();
+				document.getElementById("id5").innerHTML = text5;
+				c++;
+				count++;
+			}
+			if(count == 0){
+				text5 = null;
+				document.getElementById("id5").innerHTML = text5;
+			}
+            
+            count = 0;    
+            if(regex6.test(email.value) == false || email.value == null){
+            	text6 = "Enter a valid email id";
+				document.getElementById("7").focus();
+				document.getElementById("id6").innerHTML = text6;
+				c++;
+				count++;
+			}
+			if(count == 0){
+				text6 = null;
+				document.getElementById("id6").innerHTML = text6;
+			}
+
+			count = 0;
+			if(regex7.test(ins.value) == false || ins.value == true){
+            	text7 = "Enter a valid institution name";
+				document.getElementById("8").focus();
+				document.getElementById("id7").innerHTML = text7;
+				c++;
+				count++;
+			}
+			if(count == 0){
+				text7 = null;
+				document.getElementById("id7").innerHTML = text7;
+			}
+
+			if(c > 0)
 				return false;
+			else{
+				alert("Voila !! You've successfully created the account!!");
+				return true;
 			}
-			*/
-			var email = document.signup.Email.value;
-			alert(email);
-			atpos  = email.indexOf("@");
-         	dotpos = email.lastIndexOf(".");
-         	if (atpos < 1 || ( dotpos - atpos < 2 ) && email.value == null){
-	            document.getElementById("id6").innerHTML = "Enter valid email address"; 
-	            document.signup.Email.focus() ;
-	            return false;
-	         }
-	         return true;
-			}
+
+		}
 	</script>
 </head>
 <body>
@@ -69,43 +175,47 @@
 	<div class = "form">
 		<center>
 		<fieldset>
-			<form action = "#" method = "post" name="signup">
+			<form action = "#" method = "post" name="signup" onsubmit="return validate();">
 				<table class="Name">
 					<th>Name</th>
 					<tr>
-						<td><input type="text" name="Fname" placeholder="First" size="14"></td>
-						<td><input type="text" name="Lname" placeholder="Last" size="14"></td>
+						<td><input type="text" id="1" name="Fname" placeholder="First" size="14"></td>
+						<td><input type="text" id="2" name="Lname" placeholder="Last" size="14"></td>
 					</tr>
 				</table>
-
+					<td><div id="id1"></div></td>
 				<table>
 					<th>Create your username</th>
-					<tr><td><input type="text" name="Uname" size="33" placeholder="example : john123"></td></tr>
+					<tr><td><input type="text" id="3" name="Uname" size="33" placeholder="example : john123"></td></tr>
 				</table>
+					<td><div id="id2"></div></td>	
 				<table>
 					<th>Choose your password</th>
-					<tr><td><input type="password" name="Pword" size="33"></td></tr>
+					<tr><td><input type="password" id="4" name="Pword" size="33"></td></tr>
 				</table>
+					<td><div id="id3"></div></td>
 				<table>
 					<th>Confirm your password</th>
-					<tr><td><input type="password" name="CPword" size="33"></td></tr>
+					<tr><td><input type="password" id="5" name="CPword" size="33"></td></tr>
 				</table>
+					<td><div id="id4"></div></td>
 				<table>
 					<th>Phone Number</th>
-					<tr><td><input type="tel" name="CPword" size="33" maxlength="10" placeholder="example : 9765124532"></td></tr>
+					<tr><td><input type="text" id="6" name="Phone" size="33" maxlength="10" placeholder="example : 9765124532"></td></tr>
 				</table>
+					<td><div id="id5"></div></td>
 				<table>
 					<th>Email address</th>
-					<tr><td><input type="text" name="Email" size="33" placeholder="example : someone@example.com"></td></tr>
-					<th><p id="id6"></p></th>
+					<tr><td><input type="text" id="7" name="Email" size="33" placeholder="example : someone@example.com"></td></tr>
 				</table>
-				
+					<td><div id="id6"></div></td>
 				<table>
 					<th>Institution Name</th>
-					<tr><td><input type="text" name="InsName" size="33" placeholder="example : K J Somaiya Institute of Engineering and IT"></td></tr>
+					<tr><td><input type="text" id="8" name="InsName" size="33" placeholder="example : K J Somaiya Institute of Engineering and IT"></td></tr>
 				</table>
+					<td><div id="id7"></div></td><br>
 				<table>
-				<tr><td><input type="submit" value="Submit" onclick="return validate()"></td></tr>
+				<tr><td><br><input type="submit" value="Submit"></td></tr>
 				</table>
 			</form>
 		</fieldset>
